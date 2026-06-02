@@ -30,13 +30,9 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 .login-label{display:block;text-align:left;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px}
 .login-input{width:100%;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;color:var(--text);font-family:'Nunito',sans-serif;font-size:15px;font-weight:600;outline:none;text-align:center;letter-spacing:2px;transition:border-color .2s;margin-bottom:12px}
 .login-input:focus{border-color:var(--green)}
-.login-btn{width:100%;padding:12px;background:var(--green);border:none;border-radius:10px;color:#0a1a00;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:opacity .2s;margin-bottom:10px}
+.login-btn{width:100%;padding:12px;background:var(--green);border:none;border-radius:10px;color:#0a1a00;font-family:'Nunito',sans-serif;font-size:13px;font-weight:800;cursor:pointer;text-transform:uppercase;letter-spacing:1px;transition:opacity .2s}
 .login-btn:hover{opacity:.88}
-.login-btn-ms{width:100%;padding:11px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;color:var(--text);font-family:'Nunito',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.login-btn-ms:hover{border-color:var(--blue);color:var(--blue)}
-.login-sep{font-size:10px;color:var(--muted);margin:10px 0;text-transform:uppercase;letter-spacing:1px}
 .login-error{color:var(--red);font-size:12px;font-weight:600;margin-top:10px;display:none}
-.login-info{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
 .header{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{display:flex;align-items:center;gap:12px}
 .logo-mark{position:relative;width:38px;height:38px;display:flex;align-items:center;justify-content:center}
@@ -53,7 +49,6 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 .date-badge{font-size:11px;color:var(--muted);font-weight:600;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:5px 10px}
 .btn-refresh{padding:6px 14px;background:var(--surface2);border:1px solid var(--border2);border-radius:7px;color:var(--dim);font-family:'Nunito',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase}
 .btn-refresh:hover{border-color:var(--green);color:var(--green)}
-.ms-badge{font-size:10px;color:var(--blue);font-weight:700;background:var(--blue-glow);border:1px solid rgba(78,158,255,0.2);border-radius:5px;padding:3px 8px;display:none}
 .tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--border);padding:0 32px}
 .tab{padding:14px 22px 13px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:color .2s;letter-spacing:0.3px;text-transform:uppercase;border-bottom:2px solid transparent;margin-bottom:-1px}
 .tab:hover{color:var(--dim)}.tab.active{color:var(--green);border-bottom-color:var(--green)}
@@ -120,26 +115,18 @@ td{padding:13px 16px;font-weight:500}
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <div class="login-mark"><div class="login-inner"></div></div>
     <div class="login-name">consig<span>net</span></div>
     <div class="login-sub">Painel Comercial</div>
-    <label class="login-label">Senha do painel</label>
+    <label class="login-label">Senha de acesso</label>
     <input type="password" class="login-input" id="loginInput" placeholder="••••••••••" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">Entrar como equipe</button>
-    <div class="login-sep">ou</div>
-    <button class="login-btn-ms" onclick="loginMicrosoft()">
-      <svg width="16" height="16" viewBox="0 0 21 21" fill="none"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
-      Entrar com Microsoft (Fernanda)
-    </button>
-    <div class="login-info">Login Microsoft sincroniza e-mails automaticamente</div>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
     <div class="login-error" id="loginError">Senha incorreta. Tente novamente.</div>
   </div>
 </div>
 
-<!-- HEADER -->
 <div class="header">
   <div class="logo">
     <div class="logo-mark"><div class="logo-inner"></div></div>
@@ -150,7 +137,6 @@ td{padding:13px 16px;font-weight:500}
   </div>
   <div class="header-right">
     <div class="live-dot">AO VIVO</div>
-    <div id="ms-badge" class="ms-badge">📧 Outlook conectado</div>
     <button class="btn-refresh" onclick="loadAll()">⟳ Atualizar</button>
     <div class="date-badge" id="dateBadge"></div>
   </div>
@@ -163,7 +149,6 @@ td{padding:13px 16px;font-weight:500}
 
 <div class="main">
   <div id="sec-contratos" class="section active">
-    <div class="sync-banner" id="syncBanner">⟳ Sincronizando e-mails com Outlook...</div>
     <div class="kpi-row" style="grid-template-columns:repeat(3,1fr)">
       <div class="kpi green"><div class="kpi-label">Total Enviados</div><div class="kpi-value" id="kpi-total">—</div><div class="kpi-sub">contratos solicitados</div></div>
       <div class="kpi red"><div class="kpi-label">Pendentes</div><div class="kpi-value" id="kpi-pendentes">—</div><div class="kpi-sub">aguardando Reinaldo</div></div>
@@ -183,8 +168,8 @@ td{padding:13px 16px;font-weight:500}
     </div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Instituição</th><th>Data Envio</th><th>Status</th><th>Fonte</th></tr></thead>
-        <tbody id="tbody-c"><tr class="loading-row"><td colspan="4">⟳ Aguardando autenticação...</td></tr></tbody>
+        <thead><tr><th>Instituição</th><th>Data Envio</th><th>Status</th></tr></thead>
+        <tbody id="tbody-c"><tr class="loading-row"><td colspan="3">⟳ Carregando...</td></tr></tbody>
       </table>
     </div>
   </div>
@@ -217,7 +202,6 @@ td{padding:13px 16px;font-weight:500}
 
 <div class="toast" id="toast"></div>
 
-<!-- MSAL carregado de forma async com callback -->
 <script>
 const SENHA      = 'Consig2026*';
 const SB_URL     = 'https://zmmccbhsnlbltrrpqzrq.supabase.co';
@@ -225,286 +209,214 @@ const SB_KEY     = 'sb_publishable_tR5exlUL3JGThODX05dXGw_m0cKna7Y';
 const PIPE_TOKEN = '90c703e85a61821341d677f1ff907a630ae6ff67';
 const AZURE_ORG  = 'db1global';
 const AZURE_PROJ = 'Implantação - Consignet';
-const REINALDO   = 'reinaldo.silva@db1.com.br';
+const AZURE_PAT  = 'CKx7j6QM9QCYiP3pC6yiRwHcJibbO7N4mxITUWldNhXjm8lRMydnJQQJ99CFACAAAAAUuIEjAAASAZDOS5qC';
 
-// Azure PAT guardado no Supabase Secret — buscado dinamicamente
-let AZURE_PAT = '';
+// Palavras-chave de órgãos públicos — só esses aparecem na aba Clientes Ganhos
+const ORGAOS_PUBLICOS = [
+  'prefeitura','município','municipio','câmara','camara','instituto','previdência',
+  'previdencia','prev.','pref.','cam.','fundo','autarquia','saae','samae','dae',
+  'consórcio','consorcio','assembleia','defensoria','ministerio','ministério',
+  'regime','rpps','iprev','ipassp','fozprev','bdprev','ipresp','ipsm',
+  'secretaria','governo','estado','federal','union','uniao','associacao',
+  'associação','fundação','fundacao','serviço','servico','companhia publica',
+  'capsem','hospital','hosp.','sanasa','cogel','procon'
+];
 
-let msalInstance = null;
-let graphToken = null, isAdmin = false;
-let contratos = [], ganhos = [], implantados = new Set();
-let fcAtivo = 'todos', fgAtivo = 'todos', searchCv = '', searchGv = '';
+function isOrgaoPublico(name) {
+  if (!name) return false;
+  const n = name.toLowerCase();
+  return ORGAOS_PUBLICOS.some(kw => n.includes(kw));
+}
+
+let contratos=[], ganhos=[], implantados=new Set();
+let fcAtivo='todos', fgAtivo='todos', searchCv='', searchGv='';
 
 // DATE
 const days=['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
 const months=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-const n=new Date();
-document.getElementById('dateBadge').textContent=`${days[n.getDay()]}, ${n.getDate()} ${months[n.getMonth()]} ${n.getFullYear()}`;
+const now=new Date();
+document.getElementById('dateBadge').textContent=`${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
 
-// Carrega MSAL dinamicamente
-function loadMsal() {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement('script');
-    s.src = 'https://alcdn.msauth.net/browser/2.38.3/js/msal-browser.min.js';
-    s.onload = resolve;
-    s.onerror = () => {
-      // fallback CDN
-      const s2 = document.createElement('script');
-      s2.src = 'https://unpkg.com/@azure/msal-browser@2.38.3/lib/msal-browser.min.js';
-      s2.onload = resolve;
-      s2.onerror = reject;
-      document.head.appendChild(s2);
-    };
-    document.head.appendChild(s);
-  });
-}
-
-async function initApp() {
-  try {
-    await loadMsal();
-    msalInstance = new msal.PublicClientApplication({
-      auth: {
-        clientId: '14d82eec-204b-4c2f-b7e8-296a70dab67e',
-        authority: 'https://login.microsoftonline.com/common',
-        redirectUri: window.location.origin + window.location.pathname,
-      },
-      cache: { cacheLocation: 'sessionStorage', storeAuthStateInCookie: true }
-    });
-    await msalInstance.initialize();
-    const r = await msalInstance.handleRedirectPromise();
-    if (r?.accessToken) {
-      graphToken = r.accessToken;
-      isAdmin = true;
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('ms-badge').style.display = 'flex';
-      await loadAll();
-    }
-  } catch(e) {
-    console.warn('MSAL init error:', e);
-  }
-}
-
-function doLogin() {
-  if (document.getElementById('loginInput').value === SENHA) {
-    isAdmin = false;
-    document.getElementById('login-screen').style.display = 'none';
+function doLogin(){
+  if(document.getElementById('loginInput').value===SENHA){
+    document.getElementById('login-screen').style.display='none';
     loadAll();
   } else {
-    document.getElementById('loginError').style.display = 'block';
-    document.getElementById('loginInput').value = '';
+    document.getElementById('loginError').style.display='block';
+    document.getElementById('loginInput').value='';
   }
 }
 
-async function loginMicrosoft() {
-  if (!msalInstance) { toast('Biblioteca Microsoft ainda carregando, aguarde...', true); return; }
-  try {
-    const r = await msalInstance.loginPopup({ scopes: ['Mail.Read', 'Mail.Send', 'User.Read', 'User.ReadBasic.All'] });
-    graphToken = r.accessToken;
-    isAdmin = true;
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('ms-badge').style.display = 'flex';
-    toast('✓ Microsoft conectado! Sincronizando...');
-    await loadAll();
-  } catch(e) {
-    console.error('MSAL login error:', e);
-    toast('Erro ao conectar Microsoft: ' + (e.message || e), true);
-  }
-}
-
-function showTab(id, el) {
+function showTab(id,el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('sec-'+id).classList.add('active');
+  el.classList.add('active'); document.getElementById('sec-'+id).classList.add('active');
 }
 
 // SUPABASE
-async function sbGet(path) {
-  const r = await fetch(`${SB_URL}/rest/v1/${path}`, { headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` } });
+async function sbGet(path){
+  const r=await fetch(`${SB_URL}/rest/v1/${path}`,{headers:{'apikey':SB_KEY,'Authorization':`Bearer ${SB_KEY}`}});
   return r.json();
-}
-async function sbPost(table, body) {
-  return fetch(`${SB_URL}/rest/v1/${table}`, { method: 'POST', headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' }, body: JSON.stringify(body) });
-}
-async function sbDelete(table) {
-  return fetch(`${SB_URL}/rest/v1/${table}`, { method: 'DELETE', headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json' } });
-}
-
-// AZURE PAT via Supabase Edge Function
-async function getAzurePat() {
-  if (AZURE_PAT) return AZURE_PAT;
-  try {
-    const r = await fetch(`${SB_URL}/functions/v1/super-task`, {
-      headers: { 'Authorization': `Bearer ${SB_KEY}` }
-    });
-    const d = await r.json();
-    AZURE_PAT = d.azure_pat || '';
-  } catch(e) {
-    // fallback vazio — Azure não vai funcionar mas o resto sim
-    AZURE_PAT = '';
-  }
-  return AZURE_PAT;
 }
 
 // IMPLANTADOS
-async function loadImplantados() {
-  const data = await sbGet('clientes_implantados?select=nome');
-  implantados = new Set((data || []).map(c => normName(c.nome)));
+async function loadImplantados(){
+  const data=await sbGet('clientes_implantados?select=nome');
+  implantados=new Set((data||[]).map(c=>normName(c.nome)));
 }
 
-function normName(name) {
-  if (!name) return '';
-  return name.toUpperCase()
-    .replace(/PREFEITURA MUNICIPAL DE |PREFEITURA DE |MUNICÍPIO DE |MUNICIPIO DE /g, '')
-    .replace(/CÂMARA MUNICIPAL DE |CAMARA MUNICIPAL DE /g, '')
-    .replace(/INSTITUTO DE PREVID[EÊ]NCIA (DO MUNICÍPIO DE |DE )/g, '')
-    .replace(/PREVID[EÊ]NCIA MUNICIPAL DE |REGIME PROPRIO DE PREVIDENCIA SOCIAL DE /g, '')
-    .replace(/PREF\.\s*|PREV\.\s*|CAM\.\s*/g, '')
-    .replace(/[\/\-]/g, ' ').replace(/\s+/g, ' ').trim();
+function normName(name){
+  if(!name)return'';
+  // Remove acentos
+  const s=name.toUpperCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/PREFEITURA MUNICIPAL DE |PREFEITURA DE |MUNICIPIO DE |MUNICIPIO |PREF\.\s*/g,'')
+    .replace(/CAMARA MUNICIPAL DE |CAMARA DE |CAM\.\s*/g,'')
+    .replace(/INSTITUTO DE PREVIDENCIA (DO MUNICIPIO DE |DE )/g,'')
+    .replace(/PREVIDENCIA MUNICIPAL DE |PREV\.\s*/g,'')
+    .replace(/REGIME PROPRIO DE PREVIDENCIA SOCIAL DE /g,'')
+    .replace(/[\/\-\.]/g,' ').replace(/\s+/g,' ').trim();
+  return s;
 }
 
-function isImplantado(name) {
-  if (!name) return false;
-  const norm = normName(name);
-  if (implantados.has(norm)) return true;
-  for (const imp of implantados) {
-    if (imp.length > 5 && (norm.includes(imp) || imp.includes(norm))) return true;
+function isImplantado(name){
+  if(!name)return false;
+  const norm=normName(name);
+  if(implantados.has(norm))return true;
+  for(const imp of implantados){
+    if(imp.length>4&&norm.length>4){
+      // Extrai município (antes do estado UF)
+      const mImp=imp.replace(/\s+[A-Z]{2}$/,'').trim();
+      const mNorm=norm.replace(/\s+[A-Z]{2}$/,'').trim();
+      if(mImp.length>4&&mNorm.length>4&&(mNorm===mImp||mNorm.includes(mImp)||mImp.includes(mNorm)))return true;
+    }
   }
   return false;
 }
 
-// OUTLOOK SYNC
-async function syncOutlook() {
-  if (!graphToken) return;
-  document.getElementById('syncBanner').classList.add('show');
-  try {
-    const h = { Authorization: `Bearer ${graphToken}` };
-    const [sentRes, repRes] = await Promise.all([
-      fetch(`https://graph.microsoft.com/v1.0/me/messages?$filter=contains(subject,'ASSINAR |')&$select=subject,sentDateTime,toRecipients&$top=200&$orderby=sentDateTime desc`, { headers: h }),
-      fetch(`https://graph.microsoft.com/v1.0/me/messages?$filter=from/emailAddress/address eq '${REINALDO}' and contains(subject,'ASSINAR')&$select=subject,receivedDateTime&$top=300`, { headers: h })
-    ]);
-    const enviados = ((await sentRes.json()).value || []).filter(e => e.toRecipients?.some(r => r.emailAddress?.address?.toLowerCase() === REINALDO));
-    const respondidos = new Set(((await repRes.json()).value || []).map(e => e.subject.replace(/^RE:\s*/i, '').trim().toUpperCase()));
-    const parseInst = s => { const m = s.match(/ASSINAR\s*\|\s*(.+)/i); return m ? m[1].trim().replace(/,$/, '').trim() : s; };
-    const rows = enviados.map(e => ({ instituicao: parseInst(e.subject), data_envio: e.sentDateTime?.split('T')[0] || null, status: respondidos.has(e.subject.trim().toUpperCase()) ? 'assinado' : 'pendente', subject: e.subject.trim() }));
-    await sbDelete('contratos');
-    if (rows.length) await sbPost('contratos', rows);
-    toast(`✓ ${rows.length} contratos sincronizados!`);
-  } catch(e) { console.error('Graph:', e); toast('Erro ao sincronizar Outlook.', true); }
-  finally { document.getElementById('syncBanner').classList.remove('show'); }
-}
-
 // PIPEDRIVE
-async function fetchPipeDeals() {
-  try {
-    const [wonR, stgR] = await Promise.all([
+async function fetchPipeDeals(){
+  try{
+    const [wonR,stgR]=await Promise.all([
       fetch(`https://api.pipedrive.com/v1/deals?status=won&limit=500&api_token=${PIPE_TOKEN}`),
       fetch(`https://api.pipedrive.com/v1/stages?api_token=${PIPE_TOKEN}`)
     ]);
-    const wonDeals = (await wonR.json()).data || [];
-    const stages = (await stgR.json()).data || [];
-    const coletaStg = stages.find(s => s.name.toLowerCase().includes('coleta'));
-    const gcStg = stages.find(s => s.name.toLowerCase().includes('gc') || s.name.toLowerCase().includes('enviado'));
-    let cd = [], gd = [];
-    if (coletaStg) { const r = await fetch(`https://api.pipedrive.com/v1/deals?stage_id=${coletaStg.id}&status=open&limit=500&api_token=${PIPE_TOKEN}`); cd = (await r.json()).data || []; }
-    if (gcStg) { const r = await fetch(`https://api.pipedrive.com/v1/deals?stage_id=${gcStg.id}&status=open&limit=500&api_token=${PIPE_TOKEN}`); gd = (await r.json()).data || []; }
-    const all = [...wonDeals.map(d => ({...d, _etapa:'ganho'})), ...cd.map(d => ({...d, _etapa:'coleta'})), ...gd.map(d => ({...d, _etapa:'enviado_gc'}))];
-    const ord = { ganho:1, coleta:2, enviado_gc:3, card_aberto:4 };
-    const map = {};
-    for (const d of all) {
-      if ((d.pipeline_name || '').toLowerCase().includes('upsell')) continue;
-      if (!map[d.id] || ord[d._etapa] > ord[map[d.id]._etapa]) map[d.id] = d;
+    const wonDeals=(await wonR.json()).data||[];
+    const stages=(await stgR.json()).data||[];
+    const coletaStg=stages.find(s=>s.name.toLowerCase().includes('coleta'));
+    const gcStg=stages.find(s=>s.name.toLowerCase().includes('gc')||s.name.toLowerCase().includes('enviado'));
+    let cd=[],gd=[];
+    if(coletaStg){const r=await fetch(`https://api.pipedrive.com/v1/deals?stage_id=${coletaStg.id}&status=open&limit=500&api_token=${PIPE_TOKEN}`);cd=(await r.json()).data||[];}
+    if(gcStg){const r=await fetch(`https://api.pipedrive.com/v1/deals?stage_id=${gcStg.id}&status=open&limit=500&api_token=${PIPE_TOKEN}`);gd=(await r.json()).data||[];}
+    const all=[...wonDeals.map(d=>({...d,_etapa:'ganho'})),...cd.map(d=>({...d,_etapa:'coleta'})),...gd.map(d=>({...d,_etapa:'enviado_gc'}))];
+    const ord={ganho:1,coleta:2,enviado_gc:3,card_aberto:4};
+    const map={};
+    for(const d of all){
+      if((d.pipeline_name||'').toLowerCase().includes('upsell'))continue;
+      if(!map[d.id]||ord[d._etapa]>ord[map[d.id]._etapa])map[d.id]=d;
     }
-    return Object.values(map).filter(d => !isImplantado(d.title));
-  } catch(e) { console.error('Pipe:', e); return []; }
+    return Object.values(map).filter(d=>
+      !isImplantado(d.title) && isOrgaoPublico(d.title)
+    );
+  }catch(e){console.error('Pipe:',e);return[];}
 }
 
 // AZURE
-async function fetchAzureCards() {
-  const pat = await getAzurePat();
-  if (!pat) return [];
-  try {
-    const b64 = btoa(':' + pat);
-    const pEnc = encodeURIComponent(AZURE_PROJ);
-    const r = await fetch(`https://dev.azure.com/${AZURE_ORG}/${pEnc}/_apis/wit/wiql?api-version=7.0`, { method: 'POST', headers: { 'Authorization': `Basic ${b64}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ query: `SELECT [System.Id],[System.Title],[System.CreatedDate] FROM WorkItems WHERE [System.TeamProject] = '${AZURE_PROJ}' ORDER BY [System.CreatedDate] DESC` }) });
-    const d = await r.json();
-    const ids = (d.workItems || []).slice(0, 300).map(w => w.id);
-    if (!ids.length) return [];
-    const dr = await fetch(`https://dev.azure.com/${AZURE_ORG}/_apis/wit/workitems?ids=${ids.join(',')}&fields=System.Id,System.Title,System.State,System.CreatedDate&api-version=7.0`, { headers: { 'Authorization': `Basic ${b64}` } });
-    const cards = (await dr.json()).value || [];
-    return cards.filter(c => !isImplantado(c.fields['System.Title']));
-  } catch(e) { console.error('Azure:', e); return []; }
+async function fetchAzureCards(){
+  try{
+    const b64=btoa(':'+AZURE_PAT);
+    const pEnc=encodeURIComponent(AZURE_PROJ);
+    const r=await fetch(`https://dev.azure.com/${AZURE_ORG}/${pEnc}/_apis/wit/wiql?api-version=7.0`,{method:'POST',headers:{'Authorization':`Basic ${b64}`,'Content-Type':'application/json'},body:JSON.stringify({query:`SELECT [System.Id],[System.Title],[System.State],[System.CreatedDate] FROM WorkItems WHERE [System.TeamProject] = '${AZURE_PROJ}' ORDER BY [System.CreatedDate] DESC`})});
+    const d=await r.json();
+    const ids=(d.workItems||[]).slice(0,300).map(w=>w.id);
+    if(!ids.length)return[];
+    const dr=await fetch(`https://dev.azure.com/${AZURE_ORG}/_apis/wit/workitems?ids=${ids.join(',')}&fields=System.Id,System.Title,System.State,System.CreatedDate&api-version=7.0`,{headers:{'Authorization':`Basic ${b64}`}});
+    const cards=(await dr.json()).value||[];
+    return cards.filter(c=>!isImplantado(c.fields['System.Title']));
+  }catch(e){console.error('Azure:',e);return[];}
 }
 
 // MATCH
-function exMun(name) {
-  if (!name) return { mun: '', uf: '' };
-  const norm = normName(name);
-  const m = norm.match(/^(.+?)\s+([A-Z]{2})$/);
-  return m ? { mun: m[1].trim(), uf: m[2] } : { mun: norm, uf: '' };
+function normMatch(name){
+  if(!name)return{mun:'',uf:''};
+  const n=normName(name);
+  const m=n.match(/^(.+?)\s+([A-Z]{2})$/);
+  return m?{mun:m[1].trim(),uf:m[2]}:{mun:n,uf:''};
 }
-function matchDeal(pn, an) {
-  const p = exMun(pn), a = exMun(an);
-  if (!p.mun || !a.mun) return false;
-  if (p.uf && a.uf && p.uf !== a.uf) return false;
-  return p.mun === a.mun || a.mun.includes(p.mun) || p.mun.includes(a.mun);
+function matchDeal(pn,an){
+  const p=normMatch(pn),a=normMatch(an);
+  if(!p.mun||!a.mun)return false;
+  if(p.uf&&a.uf&&p.uf!==a.uf)return false;
+  return p.mun===a.mun||a.mun.includes(p.mun)||p.mun.includes(a.mun);
 }
 
 // LOAD ALL
-async function loadAll() {
-  document.getElementById('tbody-c').innerHTML = '<tr class="loading-row"><td colspan="4">⟳ Carregando...</td></tr>';
-  document.getElementById('tbody-g').innerHTML = '<tr class="loading-row"><td colspan="6">⟳ Carregando Pipedrive e Azure...</td></tr>';
+async function loadAll(){
+  document.getElementById('tbody-c').innerHTML='<tr class="loading-row"><td colspan="3">⟳ Carregando...</td></tr>';
+  document.getElementById('tbody-g').innerHTML='<tr class="loading-row"><td colspan="6">⟳ Carregando Pipedrive e Azure...</td></tr>';
   await loadImplantados();
-  if (isAdmin && graphToken) await syncOutlook();
-  const [sbC, pipeDeals, azureCards] = await Promise.all([
+  const [sbC,pipeDeals,azureCards]=await Promise.all([
     sbGet('contratos?order=data_envio.desc'),
     fetchPipeDeals(),
     fetchAzureCards(),
   ]);
-  contratos = sbC || [];
-  ganhos = pipeDeals.map(d => ({ ...d, _card: azureCards.find(c => matchDeal(d.title, c.fields['System.Title'])) || null, _etapa: azureCards.find(c => matchDeal(d.title, c.fields['System.Title'])) ? 'card_aberto' : d._etapa }));
+  contratos=sbC||[];
+  ganhos=pipeDeals.map(d=>({...d,_card:azureCards.find(c=>matchDeal(d.title,c.fields['System.Title']))||null,_etapa:azureCards.find(c=>matchDeal(d.title,c.fields['System.Title']))?'card_aberto':d._etapa}));
   renderC(); renderG();
 }
 
 // RENDER CONTRATOS
-function renderC() {
-  let data = contratos.filter(c => { const mF = fcAtivo==='todos'||c.status===fcAtivo; const mS = !searchCv||c.instituicao.toLowerCase().includes(searchCv.toLowerCase()); return mF&&mS; });
-  const total = contratos.length, assin = contratos.filter(c=>c.status==='assinado').length, pend = contratos.filter(c=>c.status==='pendente').length;
-  const pct = total ? Math.round(assin/total*100) : 0;
-  document.getElementById('kpi-total').textContent = total;
-  document.getElementById('kpi-assinados').textContent = assin;
-  document.getElementById('kpi-pendentes').textContent = pend;
-  document.getElementById('progBar').style.width = pct+'%';
-  document.getElementById('prog-pct').textContent = pct+'%';
-  const tb = document.getElementById('tbody-c');
-  if (!data.length) { tb.innerHTML = `<tr><td colspan="4"><div class="empty"><div class="empty-icon">📄</div><div class="empty-text">Nenhum contrato encontrado</div><div class="empty-sub">${graphToken?'Dados sincronizados do Outlook':'Entre com Microsoft para sincronizar'}</div></div></td></tr>`; return; }
-  tb.innerHTML = data.map(c=>`<tr><td class="td-inst">${c.instituicao}</td><td class="td-date">${fmt(c.data_envio)}</td><td>${c.status==='assinado'?'<span class="badge badge-assinado">✓ Assinado</span>':'<span class="badge badge-pendente">⏳ Pendente</span>'}</td><td><span class="outlook-tag">Outlook</span></td></tr>`).join('');
+function renderC(){
+  let data=contratos.filter(c=>{
+    const mF=fcAtivo==='todos'||c.status===fcAtivo;
+    const mS=!searchCv||c.instituicao.toLowerCase().includes(searchCv.toLowerCase());
+    return mF&&mS;
+  });
+  const total=contratos.length,assin=contratos.filter(c=>c.status==='assinado').length,pend=contratos.filter(c=>c.status==='pendente').length;
+  const pct=total?Math.round(assin/total*100):0;
+  document.getElementById('kpi-total').textContent=total;
+  document.getElementById('kpi-assinados').textContent=assin;
+  document.getElementById('kpi-pendentes').textContent=pend;
+  document.getElementById('progBar').style.width=pct+'%';
+  document.getElementById('prog-pct').textContent=pct+'%';
+  const tb=document.getElementById('tbody-c');
+  if(!data.length){tb.innerHTML=`<tr><td colspan="3"><div class="empty"><div class="empty-icon">📄</div><div class="empty-text">Nenhum contrato encontrado</div></div></td></tr>`;return;}
+  tb.innerHTML=data.map(c=>`<tr>
+    <td class="td-inst">${c.instituicao}</td>
+    <td class="td-date">${fmt(c.data_envio)}</td>
+    <td>${c.status==='assinado'?'<span class="badge badge-assinado">✓ Assinado</span>':'<span class="badge badge-pendente">⏳ Pendente</span>'}</td>
+  </tr>`).join('');
 }
 function setFC(f,btn){fcAtivo=f;document.querySelectorAll('#frow-c .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderC();}
 function filterC(v){searchCv=v;renderC();}
 
 // RENDER GANHOS
-function renderG() {
+function renderG(){
   const total=ganhos.length,nC=ganhos.filter(g=>g._etapa==='coleta').length,nG=ganhos.filter(g=>g._etapa==='enviado_gc').length,nA=ganhos.filter(g=>g._etapa==='card_aberto').length;
   const pct=n=>total?Math.round(n/total*100)+'%':'—%';
-  document.getElementById('f1').textContent=total; document.getElementById('f1p').textContent='novos deals';
-  document.getElementById('f2').textContent=nC; document.getElementById('f2p').textContent=pct(nC)+' dos ganhos';
-  document.getElementById('f3').textContent=nG; document.getElementById('f3p').textContent=pct(nG)+' dos ganhos';
-  document.getElementById('f4').textContent=nA; document.getElementById('f4p').textContent=pct(nA)+' dos ganhos';
-  let data = ganhos.filter(g => { const mF=fgAtivo==='todos'||g._etapa===fgAtivo; const mS=!searchGv||(g.title||'').toLowerCase().includes(searchGv.toLowerCase())||(g.owner_name||'').toLowerCase().includes(searchGv.toLowerCase()); return mF&&mS; });
-  const tb = document.getElementById('tbody-g');
-  if (!data.length) { tb.innerHTML = `<tr><td colspan="6"><div class="empty"><div class="empty-icon">🏆</div><div class="empty-text">Nenhum cliente encontrado</div><div class="empty-sub">Mostrando apenas novos clientes</div></div></td></tr>`; return; }
+  document.getElementById('f1').textContent=total;document.getElementById('f1p').textContent='novos deals';
+  document.getElementById('f2').textContent=nC;document.getElementById('f2p').textContent=pct(nC)+' dos ganhos';
+  document.getElementById('f3').textContent=nG;document.getElementById('f3p').textContent=pct(nG)+' dos ganhos';
+  document.getElementById('f4').textContent=nA;document.getElementById('f4p').textContent=pct(nA)+' dos ganhos';
+  let data=ganhos.filter(g=>{
+    const mF=fgAtivo==='todos'||g._etapa===fgAtivo;
+    const mS=!searchGv||(g.title||'').toLowerCase().includes(searchGv.toLowerCase())||(g.owner_name||'').toLowerCase().includes(searchGv.toLowerCase());
+    return mF&&mS;
+  });
+  const tb=document.getElementById('tbody-g');
+  if(!data.length){tb.innerHTML=`<tr><td colspan="6"><div class="empty"><div class="empty-icon">🏆</div><div class="empty-text">Nenhum cliente encontrado</div><div class="empty-sub">Mostrando apenas novos órgãos públicos</div></div></td></tr>`;return;}
   const em={ganho:'badge-ganho|🏆 Ganho',coleta:'badge-coleta|📋 Coleta Doc.',enviado_gc:'badge-enviado|📤 Enviado GC',card_aberto:'badge-card|🔧 Card Aberto'};
-  tb.innerHTML = data.map(g => { const[bc,bl]=(em[g._etapa]||'badge-ganho|Ganho').split('|'); const ci=g._card?`<span class="badge badge-card">✓ ${g._card.fields['System.Title']||'Card'}</span>`:`<span style="color:var(--muted);font-size:11px">—</span>`; return`<tr><td class="td-inst">${g.title||'—'}</td><td class="td-resp">${g.owner_name||'—'}</td><td class="td-date">${fmt(g.won_time||'')}</td><td><span class="badge ${bc}">${bl}</span></td><td>${ci}</td><td><span class="pipe-tag">Pipe</span>${g._card?'<span class="azure-tag">Azure</span>':''}</td></tr>`; }).join('');
+  tb.innerHTML=data.map(g=>{
+    const[bc,bl]=(em[g._etapa]||'badge-ganho|Ganho').split('|');
+    const ci=g._card?`<span class="badge badge-card">✓ ${g._card.fields['System.Title']||'Card'}</span>`:`<span style="color:var(--muted);font-size:11px">—</span>`;
+    return`<tr><td class="td-inst">${g.title||'—'}</td><td class="td-resp">${g.owner_name||'—'}</td><td class="td-date">${fmt(g.won_time||'')}</td><td><span class="badge ${bc}">${bl}</span></td><td>${ci}</td><td><span class="pipe-tag">Pipe</span>${g._card?'<span class="azure-tag">Azure</span>':''}</td></tr>`;
+  }).join('');
 }
 function setFG(f,btn){fgAtivo=f;document.querySelectorAll('#frow-g .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderG();}
 function filterG(v){searchGv=v;renderG();}
 
 function fmt(d){if(!d)return'—';try{const dt=new Date(d);if(isNaN(dt))return d;return`${String(dt.getDate()).padStart(2,'0')}/${String(dt.getMonth()+1).padStart(2,'0')}/${dt.getFullYear()}`;}catch{return d;}}
 function toast(msg,isError){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show'+(isError?' error':'');setTimeout(()=>t.className='toast',3500);}
-
-// INIT
-initApp();
 </script>
 </body>
 </html>
